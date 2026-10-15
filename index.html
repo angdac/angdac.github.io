@@ -1,126 +1,142 @@
+
 <!DOCTYPE html>
-<html lang="tet">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio - Creative Style with Header</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; scroll-behavior: smooth; }
-        body { background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%); color: #334155; min-height: 100vh; padding-top: 80px; padding-bottom: 40px; }
-        
-        /* Header Navigasi */
-        header { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-        nav { display: flex; justify-content: space-between; align-items: center; max-width: 800px; margin: 0 auto; padding: 15px 20px; }
-        .logo { font-weight: 700; color: #0f172a; font-size: 1.1rem; }
-        nav ul { display: flex; list-style: none; gap: 20px; }
-        nav ul li a { text-decoration: none; color: #475569; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
-        nav ul li a:hover { color: #10b981; }
-
-        /* Wrapper Utama */
-        .wrapper { max-width: 800px; margin: 0 auto; background: #ffffff; border-radius: 20px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); padding: 40px; }
-        
-        /* Bagian Profil */
-        .profile-header { text-align: center; margin-bottom: 40px; padding-top: 10px; }
-        .profile-pic { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 4px solid #10b981; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .profile-header h1 { font-size: 2rem; color: #0f172a; margin-bottom: 5px; }
-        .badge { display: inline-block; background: #d1fae5; color: #065f46; padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 15px; }
-        .profile-header p { color: #64748b; font-size: 1rem; max-width: 500px; margin: 0 auto; }
-        
-        .section-title { font-size: 1.2rem; color: #0f172a; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; margin: 40px 0 15px; font-weight: 700; }
-        .list-group { display: flex; flex-direction: column; gap: 12px; }
-        .list-item { background: #f8fafc; padding: 15px 20px; border-radius: 10px; border-left: 4px solid #10b981; }
-        .list-item h4 { color: #0f172a; font-size: 1rem; margin-bottom: 4px; }
-        .list-item p { color: #64748b; font-size: 0.9rem; }
-        
-        /* Bagian Kontak */
-        .contact-info { display: flex; justify-content: space-around; background: #f0fdf4; padding: 20px; border-radius: 12px; text-align: center; margin-top: 30px; flex-wrap: wrap; gap: 15px; }
-        .contact-info div p:first-child { font-weight: 600; color: #065f46; font-size: 0.85rem; text-transform: uppercase; }
-        .contact-info div p:last-child { color: #1e293b; font-size: 0.95rem; }
-        
-        .footer-note { text-align: center; margin-top: 40px; color: #94a3b8; font-size: 0.85rem; }
-    </style>
+    <title>My Personal Website</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Header dengan Menu Navigasi -->
-    <header>
-        <nav>
-            <div class="logo">Alex.Portofolio</div>
-            <ul>
-                <li><a href="#profile">Profile</a></li>
-                <li><a href="#keahlian">Keahlian</a></li>
-                <li><a href="#trabalho">Trabalho</a></li>
-                <li><a href="#kontaktu">Kontaktu</a></li>
-            </ul>
+    <!-- Navigation -->
+    <header class="header">
+        <a href="#home" class="logo">My<span>Website</span></a>
+
+        <button class="menu-toggle"
+                id="menu-toggle"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="navbar">
+            ☰
+        </button>
+
+        <nav class="navbar" id="navbar">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#about" class="nav-link">About Me</a>
+            <a href="#gallery" class="nav-link">Gallery</a>
+            <a href="#contact" class="nav-link">Contact</a>
         </nav>
     </header>
 
-    <div class="wrapper">
-        <!-- Bagian Profile -->
-        <section id="profile" class="profile-header">
-            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=faces" alt="Foto Profil" class="profile-pic">
-            <h1>Alex da Costa</h1>
-            <span class="badge">Mahasiswa IT & Database Enthusiast</span>
-            <p>Fokus ba dezenvolvimentu web, struktur baza de dadus, no resolusaun problema tekniku iha UNTL.</p>
-        </section>
-
-        <!-- Bagian Keahlian -->
-        <section id="keahlian">
-            <div class="section-title">Keahlian & Teknologi</div>
-            <div class="list-group">
-                <div class="list-item">
-                    <h4>Frontend Web Development</h4>
-                    <p>HTML5, CSS3, JavaScript, no desenu layout responsivu.</p>
-                </div>
-                <div class="list-item">
-                    <h4>Backend & Database MySQL</h4>
-                    <p>PHP scripting, operasaun CRUD, no konfiguração database relasionál.</p>
-                </div>
-                <div class="list-item">
-                    <h4>Environment & Tools</h4>
-                    <p>Ubuntu Linux, XAMPP server, Git version control, no VS Code.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Bagian Trabalho (Proyek) -->
-        <section id="trabalho">
-            <div class="section-title">Trabalho / Proyek Unggulan</div>
-            <div class="list-group">
-                <div class="list-item">
-                    <h4>Sistema Informasaun Akademika (SIS Aluno)</h4>
-                    <p>Aplikasaun web bazeia ba PHP no MySQL ho painel admin atu jere dadus.</p>
-                </div>
-                <div class="list-item">
-                    <h4>Portofolio Grupu Trabalho PW</h4>
-                    <p>Pájina dokumentasaun ofisiál ba servisu no tarefa grupu nian.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Bagian Kontaktu -->
-        <section id="kontaktu">
-            <div class="section-title">Kontaktu</div>
-            <div class="contact-info">
-                <div>
-                    <p>NRE</p>
-                    <p>202401001</p>
-                </div>
-                <div>
-                    <p>E-mail</p>
-                    <p>angelo.dacosta@untl.edu.tl</p>
-                </div>
-                <div>
-                    <p>Telemovel</p>
-                    <p>+670 77123456</p>
-                </div>
-            </div>
-        </section>
-
-        <div class="footer-note">
-            <p>&copy; 2026 Alex da Costa. Universidade Nacional Timor Lorosa'e.</p>
+    <!-- Home -->
+    <section id="home" class="home">
+        <div class="home-content">
+            <p class="subtitle">WELCOME TO MY WEBSITE</p>
+            <h1>Hello, I'm <span>Your Name</span></h1>
+            <h2>Student | Web Developer</h2>
+            <p>
+                Welcome to my personal website.
+                Here you can learn about me, explore my gallery,
+                and contact me.
+            </p>
+            <a href="#about" class="btn">Discover More</a>
         </div>
+
+        <div class="home-image">
+            <img
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80"
+                alt="Profile portrait">
+        </div>
+    </section>
+
+    <!-- About Me -->
+    <section id="about" class="section about">
+        <h2 class="section-title">About <span>Me</span></h2>
+
+        <div class="about-content">
+            <p>
+                My name is Your Name. I am a student who is interested
+                in technology, programming, and web development.
+                I enjoy learning new things and creating useful
+                digital projects.
+            </p>
+
+            <div class="skills">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>Creative Design</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="section gallery">
+        <h2 class="section-title">My <span>Gallery</span></h2>
+        <p class="section-description">
+            Some pictures that inspire me.
+            Click any picture to view it larger.
+        </p>
+
+        <div class="gallery-grid">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=80"
+                 alt="Beautiful nature" class="gallery-item">
+
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=700&q=80"
+                 alt="Portrait photography" class="gallery-item">
+
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=700&q=80"
+                 alt="Working with technology" class="gallery-item">
+
+            <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=700&q=80"
+                 alt="Mountain landscape" class="gallery-item">
+
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=700&q=80"
+                 alt="Web development workspace" class="gallery-item">
+
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80"
+                 alt="Beach scenery" class="gallery-item">
+        </div>
+    </section>
+
+    <!-- Image Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog"
+         aria-label="Enlarged gallery image" aria-modal="true" hidden>
+        <button class="lightbox-close" id="lightbox-close"
+                aria-label="Close image">&times;</button>
+        <img id="lightbox-image" src="" alt="">
     </div>
 
+    <!-- Contact -->
+    <section id="contact" class="section contact">
+        <h2 class="section-title">Contact <span>Me</span></h2>
+        <p class="section-description">
+            Have a question? Send me a message.
+        </p>
+
+        <form id="contact-form" class="contact-form">
+            <input type="text" id="name"
+                   placeholder="Your Name" required>
+
+            <input type="email" id="email"
+                   placeholder="Your Email" required>
+
+            <textarea id="message" rows="5"
+                      placeholder="Your Message" required></textarea>
+
+            <button type="submit" class="btn">Send Message</button>
+            <p id="form-status" role="status" aria-live="polite"></p>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; <span id="year"></span> Your Name.
+           All Rights Reserved.</p>
+        <a href="#home">Back to Top ↑</a>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
