@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Online Examination</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 15px;
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    padding: 15px;
+    background: white;
+    max-width: 1100px;
+    margin: auto;
+    border-radius: 10px;
+}
+
+/* Clock */
+#clock {
+    font-size: 38px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+#date {
+    color: #555;
+    margin: 8px;
+}
+
+/* Countdown */
+#timer {
+    font-size: 25px;
+    font-weight: bold;
+    color: #dc2626;
+    margin: 12px;
+}
+
+/* Buttons */
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+    background: #2563eb;
+    margin: 5px;
+    font-size: 15px;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+#startBtn {
+    background: #16a34a;
+}
+
+/* Warning */
+#warning {
+    display: none;
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 12px;
+    margin: 12px auto;
+    max-width: 1100px;
+    text-align: center;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+/* Form */
+.form-container {
+    max-width: 1100px;
+    height: 750px;
+    margin: 15px auto;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+@media(max-width: 768px) {
+    #clock {
+        font-size: 30px;
+    }
+
+    .form-container {
+        height: 700px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+
+    <h2>ONLINE QUIS</h2>
+
+    <!-- Live Clock -->
+    <div id="clock">00:00:00</div>
+    <div id="date"></div>
+
+    <!-- Countdown -->
+    <div>REMAINING TIME</div>
+    <div id="timer">60:00</div>
+
+    <button id="startBtn" onclick="startExam()">
+        Start Exam & Full Screen
+    </button>
+
+<!--
+    <button onclick="enterFullscreen()">
+        Full Screen
+    </button>
+-->
+    <button onclick="exitFullscreen()">
+        Exit Full Screen
+    </button>
+
+</div>
+
+<!-- Warning -->
+<div id="warning">
+    WARNING! You have exited Full Screen mode.
+    Please return to Full Screen.
+</div>
+
+<!-- Google Form -->
+<div class="form-container">
+
+    <iframe
+        src="https://forms.gle/W4XwBPRQNxeyjzDZA"
+        loading="lazy">
+    </iframe>
+
+</div>
+
+<script>
+
+// ==========================
+// LIVE CLOCK
+// ==========================
+
+function updateClock() {
+
+    const now = new Date();
+
+    document.getElementById("clock").textContent =
+        now.toLocaleTimeString("en-GB", {
+            timeZone: "Asia/Dili",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        });
+
+    document.getElementById("date").textContent =
+        now.toLocaleDateString("en-GB", {
+            timeZone: "Asia/Dili",
+            weekday: "long",
+            day: "2-digit",
+            month: "long",
+            year: "numeric"
+        });
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+
+
+// ==========================
+// COUNTDOWN TIMER
+// ==========================
+
+let duration = 90 * 60;
+let remaining = duration;
+let countdown = null;
+let examStarted = false;
+
+function showTimer() {
+
+    let minutes = Math.floor(remaining / 60);
+    let seconds = remaining % 60;
+
+    document.getElementById("timer").textContent =
+        String(minutes).padStart(2, "0") + ":" +
+        String(seconds).padStart(2, "0");
+}
+
+function startCountdown() {
+
+    if (countdown !== null) return;
+
+    countdown = setInterval(function() {
+
+        if (remaining > 0) {
+
+            remaining--;
+            showTimer();
+
+        } else {
+
+            clearInterval(countdown);
+            countdown = null;
+
+            document.getElementById("timer").textContent =
+                "TIME IS UP!";
+
+            alert("Your examination time has finished!");
+
+        }
+
+    }, 1000);
+}
+
+
+// ==========================
+// START EXAM
+// ==========================
+
+async function startExam() {
+
+    if (examStarted) return;
+
+    examStarted = true;
+
+    document.getElementById("startBtn").disabled = true;
+
+    startCountdown();
+
+    try {
+        await document.documentElement.requestFullscreen();
+    } catch (error) {
+        alert("Full Screen unavailable. Please use the Full Screen button.");
+    }
+}
+
+
+// ==========================
+// FULL SCREEN
+// ==========================
+
+async function enterFullscreen() {
+
+    if (!document.fullscreenElement) {
+
+        try {
+            await document.documentElement.requestFullscreen();
+        } catch (error) {
+            alert("Unable to enter Full Screen.");
+        }
+
+    }
+}
+
+function exitFullscreen() {
+
+    if (document.fullscreenElement) {
+        document.exitFullscreen();
+    }
+
+}
+
+
+// ==========================
+// WARNING WHEN EXIT FULLSCREEN
+// ==========================
+
+document.addEventListener("fullscreenchange", function() {
+
+    const warning = document.getElementById("warning");
+
+    if (examStarted && !document.fullscreenElement) {
+
+        warning.style.display = "block";
+
+    } else {
+
+        warning.style.display = "none";
+
+    }
+
+});
+
+
+// Initial timer
+showTimer();
+
+</script>
+
+</body>
+</html>
